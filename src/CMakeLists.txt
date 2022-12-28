@@ -1,0 +1,17 @@
+set(LITE_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_CURRENT_BINARY_DIR}")
+configure_file(config.h.in config.h)
+
+macro(EngineModuleDefaults lib)
+    if (NOT ${lib} STREQUAL "core")
+        target_precompile_headers(${lib} REUSE_FROM core)
+    endif()
+    target_include_directories(${lib} PUBLIC "${LITE_INCLUDE_DIRS}")
+    if(MSVC)
+        target_compile_options(${lib} PRIVATE "/W4" "/WX")
+        else()
+        target_compile_options(${lib} PRIVATE "-Wall" "-Werror")
+    endif()
+endmacro()
+
+add_subdirectory(core)
+add_subdirectory(tools)
