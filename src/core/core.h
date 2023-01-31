@@ -29,6 +29,7 @@
 
 #include "basetypes.h"
 #include "debug.h"
+#include "macros.h"
 #include "memory.h"
 #include "math/minmax.h"
 #include "threads.h"

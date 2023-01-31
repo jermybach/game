@@ -1,3 +1,4 @@
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_CURRENT_BINARY_DIR}")
 set(LITE_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_CURRENT_BINARY_DIR}")
 configure_file(config.h.in config.h)
 
@@ -14,4 +15,5 @@ macro(EngineModuleDefaults lib)
 endmacro()
 
 add_subdirectory(core)
+add_subdirectory(engine)
 add_subdirectory(tools)

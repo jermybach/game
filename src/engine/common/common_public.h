@@ -9,6 +9,7 @@ void Common_Shutdown();
 void Common_Frame();
 
 /* CVARS */
+#define CVAR_VALUE_MAX 128
 
 typedef enum {
     CVAR_STRING = BIT(0),
@@ -36,5 +37,12 @@ typedef struct cvar_t  {
 
     struct cvar_t *next;
 } cvar_t;
+
+cvar_t *CVar_Get(const char* name);
+void CVar_Register(size_t count, cvar_t* cvars);
+void CVar_SetValueQuiet(cvar_t* cvar, const char* value);
+void CVar_SetValue(cvar_t* cvar, const char* value);
+
+#define CVAR(name) cvar_t *name = CVar_Get(#name);
 
 #endif//COMMON_PUBLIC_H
