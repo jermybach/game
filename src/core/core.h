@@ -26,6 +26,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <dirent.h>
 
 #include "basetypes.h"
 #include "debug.h"
@@ -33,3 +34,4 @@
 #include "memory.h"
 #include "math/minmax.h"
 #include "threads.h"
+#include "strutils.h"

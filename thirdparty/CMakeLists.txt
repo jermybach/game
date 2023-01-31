@@ -7,4 +7,6 @@
 #set(BUILD_TESTING OFF CACHE BOOL "" FORCE)
 #set(SDL_TEST_ENABLED_BY_DEFAULT OFF CACHE BOOL "" FORCE)
 #add_subdirectory(curl)
+add_subdirectory(glad)
 add_subdirectory(SDL)
+add_subdirectory(tronkko)

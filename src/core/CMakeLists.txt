@@ -14,4 +14,8 @@ target_sources(core PRIVATE
     "win32/win32_private.h"
     "win32/win32_threads.c"
     "win32/win32_winmain.c"
-)
+ "container/list.h" "strutils.h" "strutils.c")
+
+if(WIN32)
+target_link_libraries(core PUBLIC dirent)
+endif()

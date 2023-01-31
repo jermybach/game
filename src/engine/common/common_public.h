@@ -4,6 +4,7 @@
 
 /* COMMON */
 
+void Common_Preinit();
 void Common_Init();
 void Common_Shutdown();
 void Common_Frame();
