@@ -1,9 +1,0 @@
-{
-    "cmake.buildDirectory": "${workspaceFolder}/.build",
-    "files.associations": {
-        "stdlib.h": "c",
-        "core.h": "c",
-        "cstddef": "c",
-        "type_traits": "c"
-    }
-}
