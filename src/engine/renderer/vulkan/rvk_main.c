@@ -1,25 +1,27 @@
-#include "../common/common_public.h"
+#include "common/common_public.h"
 #include "core/core.h"
-#include "r_public.h"
+#include "renderer/r_public.h"
+#include "config.h"
 
-#include <SDL3/SDL_vulkan.h>
+#ifdef RENDERER_ENABLE_VULKAN
 #include <glad/vulkan.h>
 
-cvar_t r_cvars[] = {{"r_physicalDeviceIndex", "0", CVAR_NUMBER | CVAR_STATIC}};
-
-static SDL_Window *S_Window = NULL;
+cvar_t r_cvars[] = {
+        {"r_physicalDeviceIndex", "0", CVAR_NUMBER | CVAR_STATIC},
+        };
 
 const char *requested_instance_layers[] = {"VK_LAYER_KHRONOS_validation", NULL};
 
 bool checkValidationSupport();
 
-void R_Preinit()
+void RVK_Preinit()
 {
         CVar_Register(arraysize(r_cvars), r_cvars);
 }
 
-void R_Init()
+void RVK_Init()
 {
+        DTrace("RVK_Init() -- Initializing Vulkan renderer");
         CVAR(r_physicalDeviceIndex);
         CVAR(com_windowWidth);
         CVAR(com_windowHeight);
@@ -30,11 +32,6 @@ void R_Init()
 #else
         const bool enabledValidationLayers = false;
 #endif
-
-        S_Window = SDL_CreateWindow("", 100, 100, 100, 100,
-                                    SDL_WINDOW_VULKAN | SDL_WINDOW_HIDDEN);
-
-        gladLoadVulkan(NULL, SDL_Vulkan_GetVkGetInstanceProcAddr());
 
         VkApplicationInfo app_info = {
             .sType = VK_STRUCTURE_TYPE_APPLICATION_INFO,
@@ -50,13 +47,34 @@ void R_Init()
 };
 }
 
-void R_Shutdown()
+void RVK_Shutdown()
 {
 }
-void R_ResetSwapChain()
+
+void RVK_BeginFrame()
+{
+}
+
+void RVK_EndFrame()
+{
+}
+
+void RVK_ResetSwapChain()
 {
 }
 
 bool checkValidationSupport()
 {
 }
+
+renderInterface_t rvk_interface = {
+        .R_Preinit = RVK_Preinit,
+        .R_Init = RVK_Init,
+        .R_Shutdown = RVK_Shutdown,
+        .R_BeginFrame = RVK_BeginFrame,
+        .R_EndFrame = RVK_EndFrame,
+};
+// TODO: Move rapi to some kind of pre-init driver select function in a renderer/r_*.c file
+renderInterface_t *rapi = &rvk_interface;
+
+#endif

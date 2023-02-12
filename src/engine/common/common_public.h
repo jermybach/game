@@ -8,6 +8,7 @@ void Common_Preinit();
 void Common_Init();
 void Common_Shutdown();
 void Common_Frame();
+bool Common_Running();
 
 /* CVARS */
 #define CVAR_VALUE_MAX 128
@@ -45,5 +46,17 @@ void CVar_SetValueQuiet(cvar_t* cvar, const char* value);
 void CVar_SetValue(cvar_t* cvar, const char* value);
 
 #define CVAR(name) cvar_t *name = CVar_Get(#name);
+
+/**
+ * Job Manager
+*/
+
+void JobManager_Init();
+void JobManager_Shutdown();
+
+
+/**
+ * FileSystem
+*/
 
 #endif//COMMON_PUBLIC_H

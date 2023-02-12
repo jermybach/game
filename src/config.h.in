@@ -1,6 +1,7 @@
 #ifndef CONFIG_H_IN
 #define CONFIG_H_IN
 
-
+#cmakedefine RENDERER_ENABLE_OPENGL
+#cmakedefine RENDERER_ENABLE_VULKAN
 
 #endif//CONFIG_H_IN
