@@ -2,5 +2,7 @@
     "files.associations": {
         "*.h.in": "c",
         "*.h": "c"
-    }
+    },
+    "cmake.buildDirectory": "${workspaceFolder}/.build",
+    "explorer.excludeGitIgnore": true
 }

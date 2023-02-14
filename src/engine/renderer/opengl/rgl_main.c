@@ -5,15 +5,23 @@
  * 
  * @brief Implements most of the OpenGL driver
  */
-#include "../r_public.h"
 #include "core/core.h"
 #include "common/common_public.h"
 #include "config.h"
+#include "renderer/r_public.h"
+#include "sys/sys_public.h"
 #ifdef RENDERER_ENABLE_OPENGL
 #include <glad/gl.h>
 
+#if COMPILER_CL
+#pragma comment(lib, "opengl32.lib")
+#endif
+
 void RGL_Preinit() {}
-void RGL_Init() {}
+void RGL_Init() {
+    gladLoadGL((GLADloadfunc)Sys_GL_GetProcAddr);
+
+}
 void RGL_Shutdown() {}
 void RGL_BeginFrame() {}
 void RGL_EndFrame() {}
